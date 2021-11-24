@@ -36,7 +36,7 @@
                                 <thead>
                                     <tr>
                                         <th>NISN</th>
-                                        <th>Nama Siswa</th>
+                                        <th>Nama Siswa sekolah</th>
                                         <th>Kelas</th>
                                         <th>Jurusan</th>
                                         <th>Status</th>
