@@ -37,6 +37,7 @@ Route::group(['prefix' => 'data'], function() {
 
 Route::group(['prefix' => 'tambah-data'], function() {
     Route::get('/siswa', 'DataSiswaController@create')->name('tambah-data.siswa');
+    Route::post('store','DataSiswaController@store')->name('tambah-data.store');
 });
 
 Route::group(['prefix' => 'edit-data'], function() {
