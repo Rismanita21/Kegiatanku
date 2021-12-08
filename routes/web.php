@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes(); 
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'kegiatan'], function(){
     Route::post('/store{user}', 'KegiatanController@store')->name('kegiatan.store');
 });
 Route::get('/pendaftaran', 'DaftarController@index')->name('daftar.index');
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard.index');
 
 Route::get('/laporan', 'LaporanController@index')->name('laporan.index');
 
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'edit-data'], function() {
 
 Route::group(['prefix'  => 'manage-kegiatan'], function(){
     route::get('/','ManagekegiatanController@index')->name('manage-kegiatan');
-    route::get('/add-form','ManagekegiatanController@create')->name('manage-kegiatan.add-form');    
+    route::get('/add-form','ManagekegiatanController@create')->name('manage-kegiatan.add-form');
     route::get('/add-form/edit-kegiatan/{id}','ManagekegiatanController@edit')->name('manage-kegiatan.add-form.edit-kegiatan');
     route::post('/post','ManagekegiatanController@store')->name('manage-kegiatan.store');
     route::delete('/delete/{id}','ManagekegiatanController@destroy')->name('manage-kegiatan.delete');
@@ -65,6 +65,7 @@ Route::group(['prefix' => 'user'], function(){
     route::post('verifikasi-pembayaran','PaymentController@store')->name('user.verifikasi-pembayaran');
 });
 
-
-
-
+Route::group(['prefix' => 'pendaftaran'], function(){
+     Route::get('pending','Pendaftaran\PendingController@index')->name('pendaftaran.pending');
+     Route::get('verified', 'Pendaftaran\VerifiedController@index')->name('pendaftaran.verified');
+});
