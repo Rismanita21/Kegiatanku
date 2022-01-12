@@ -23,16 +23,22 @@ class DataSiswaController extends Controller
         return view('data.siswa.create', compact('roles'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('data.siswa.edit');
+        $array = [
+            'user' => User::findOrFail($id), 
+            'role'=> Role::pluck('name','id'),
+        ];
+    
+        return view('data.siswa.edit', $array);
     }
+
     public function store(Request $request)
     {
         $this->validate($request,[
             'name'           =>  'required',
             'email'          =>  'required',
-            'password'       =>  'required',
+            'password'       =>  'required',s
         ]);
 
         $request->merge(['password' => bcrypt($request->get('password'))]);
@@ -49,7 +55,7 @@ class DataSiswaController extends Controller
                 'class'           => $request->class,
                 'phone'           => $request->phone,
                 'status'          => $request->status,
-                
+                edit
             ]);
         };
             flash()->success('Anggota Baru Berhasil Ditambahkan');
@@ -60,4 +66,18 @@ class DataSiswaController extends Controller
         
         return redirect()->back();
     }
+
+    public function updated(Request $request,$id)
+    {
+        $student = Student::where('user_id', '=', $id)->firstOrFail();
+
+        $student->update($request->all());
+
+        return redirect()->back();
+    }
+
 }
+
+
+
+   

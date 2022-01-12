@@ -41,7 +41,7 @@ Route::group(['prefix' => 'tambah-data'], function() {
 });
 
 Route::group(['prefix' => 'edit-data'], function() {
-    route::get('siswa', 'DataSiswaController@edit')->name('edit-data.siswa');
+    route::get('siswa/{user}', 'DataSiswaController@edit')->name('edit-data.siswa');
 });
 
 Route::group(['prefix'  => 'manage-kegiatan'], function(){
@@ -51,6 +51,7 @@ Route::group(['prefix'  => 'manage-kegiatan'], function(){
     route::post('/post','ManagekegiatanController@store')->name('manage-kegiatan.store');
     route::delete('/delete/{id}','ManagekegiatanController@destroy')->name('manage-kegiatan.delete');
     route::patch('/update/{id}','ManagekegiatanController@update')->name('manage-kegiatan.update');
+    route::patch('/update/{id}','ManagekegiatanController@update')->name('update.data.kegiatan');
 });
 
 Route::group(['prefix' => 'verifikasi-pendaftaran'], function(){
@@ -68,4 +69,8 @@ Route::group(['prefix' => 'user'], function(){
 Route::group(['prefix' => 'pendaftaran'], function(){
      Route::get('pending','Pendaftaran\PendingController@index')->name('pendaftaran.pending');
      Route::get('verified', 'Pendaftaran\VerifiedController@index')->name('pendaftaran.verified');
+});
+
+Route::group(['prefix' => 'updated'], function(){
+    route::patch('data/siswa/{user}', 'DatasiswaController@updated')->name('updated.data.siswa');
 });

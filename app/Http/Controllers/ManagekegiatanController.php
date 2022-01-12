@@ -77,5 +77,12 @@ class ManagekegiatanController extends Controller
         return redirect(route('manage-kegiatan'));
     }
 
-    
+    public function update(Request $request,$id)
+    {
+        $kegiatan = Activity::findOrFail($id);
+
+        $kegiatan->update($request->all());
+
+        return redirect()->back();
+    }
 }

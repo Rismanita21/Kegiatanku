@@ -15,26 +15,26 @@
                             Silahkan isi dibawah ini dengan benar.
                      </div>
 
-                     <form action="" method="post">
+                     <form action="{{route('updated.data.siswa', $user->id)}}" method="post">
                          @csrf
-
+                         @method('PATCH')
                          <div class="row">
                              <div class="col-md-3">
                                  <div class="form-group">
                                      <label for="">NISN</label>
-                                     <input type="text" name="nisn" class="form-control" id="" placeholder="nisn siswa">
+                                     <input type="text" name="nisn" class="form-control" id="" value="{{$user->students->first()->nisn ?? 'Belum tersedia'}}">
                                  </div>
                              </div>
                              <div class="col-md-3">
                                  <div class="form-group">
                                      <label for="">Nama</label>
-                                     <input type="text" name="nama" class="form-control" id="" placeholder="isi nama siswa">
+                                     <input type="text" class="form-control" id="" value="{{$user->name}}" placeholder="isi nama siswa">
                                  </div>
                              </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">Jenis Kelamin</label>
-                                        <select name="jenis_kelamin" id="" class="form-control">
+                                        <select name="religion" id="" class="form-control">
                                             <option value="">Silahkan Pilih Jenis Kelamin</option>
                                             <option value="Laki-Laki">Laki-Laki</option>
                                             <option value="Perempuan">Perempuan</option>
@@ -79,8 +79,15 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label for="">Nomor HP</label>
+                                        <input type="" name="phone" id="" class="form-control" value="{{$user->students->first()->phone ?? 'Belum tersedia'}}">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label for="">Status</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="" id="" class="form-control" value="{{$user->name}}">
                                             <option value="">Silahkan Pilih Status</option>
                                             <option value="Aktif">Aktif</option>
                                             <option value="Non-Aktif">Non-Aktif</option>
