@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'WelcomeController@index')->name('/');
 
 
 Route::group(['prefix' => 'kegiatan'], function(){
@@ -80,4 +78,9 @@ Route::group(['prefix' => 'destroy'], function(){
     route::delete('data/siswa/{user}','DatasiswaController@destroy')->name('destroy.data.siswa');
     route::delete('data/activity/{activity}','ManagekegiatanController@destroy')->name('destroy.data.activity');
 
-});    
+}); 
+
+Route::group(['prefix' => 'cetak'], function(){
+    Route::get('activity','Report\ActivityController@index')->name('cetak.activity');
+    Route::get('data-activity', 'Report\ActivityController@edit')->name('cetak.semua-data.activity');
+});

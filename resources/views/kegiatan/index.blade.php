@@ -13,17 +13,18 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <a href="{{route('manage-kegiatan.add-form')}}" class="btn btn-primary">Tambah Kegiatan</a>
+                            <a href="{{route('cetak.semua-data.activity')}}" class="btn btn-primary">Cetak Semua Data</a>
                         </div>
-                        <form action="" method="post">
+                        <form action="{{route('cetak.activity')}}" method="get">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="date" class="form-control">
+                                        <input type="date" name="awal" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="date" class="form-control">
+                                        <input type="date" name="akhir" class="form-control">
                                     </div>
                                 </div>
                                 <div>
