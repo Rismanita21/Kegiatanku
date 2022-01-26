@@ -22,7 +22,18 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-        <main class="py-4">
+        <div class="jumbotron">
+            <div class="container">
+                <div>
+                    <h5 class="text-white">Manage Event</h5>
+                    <h3 class="text-white">SMK AL-BAHRI</h3>
+                    <p class="text-white">
+                        Jl. Yon Armed 7 No.143, RT.003/RW.0086, Cikiwul, Bantargebang, Kota Bks, Jawa Barat 17152
+                    </p>
+                </div>
+            </div>
+        </div>
+        <main>
             @yield('content')
         </main>
     </div>

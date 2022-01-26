@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
     <div class="container">
         <a class="navbar-brand" href="{{ route('/') }}">
-            KEGIATAN SEKOLAH
+            KEGIATAN KU
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -10,26 +10,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="{{url('/')}}" class="nav-link text-white" >Welcome Page</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('dashboard.index')}}" class="nav-link text-white" >DASHBOARD</a>
+                {{-- <li class="nav-item">
+                    <a href="{{url('/')}}" class="nav-link">Welcome Page</a>
+                </li> --}}
+                <li class="nav-item hover">
+                    <a href="{{route('dashboard.index')}}" class="nav-link text-white">DASHBOARD</a>
                 </li>
                 @role('admin')
-                <li class="nav-item">
-                    <a href="{{route('data.siswa')}}" class="nav-link text-white" >DATA SISWA</a>
+                <li class="nav-item hover">
+                    <a href="{{route('data.siswa')}}" class="nav-link text-white">DATA SISWA</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('manage-kegiatan')}}" class="nav-link text-white" >MANAGE KEGIATAN</a>
+                <li class="nav-item hover">
+                    <a href="{{route('manage-kegiatan')}}" class="nav-link text-white">MANAGE KEGIATAN</a>
                 </li>
                 @endrole
                 @role('bendahara')
-                <li class="nav-item">
-                    <a href="{{route('verifikasi-pendaftaran')}}" class="nav-link text-white" >VERIFIKASI PENDAFTARAN</a>
+                <li class="nav-item hover">
+                    <a href="{{route('verifikasi-pendaftaran')}}" class="nav-link text-white">VERIFIKASI PENDAFTARAN</a>
                 </li>
                 @endrole
-
+                @role('student')
+                <li class="nav-item hover">
+                    <a href="{{route('/')}}" class="nav-link text-white">{{ __('CEK KEGIATAN') }}</a>
+                </li>
+                @endrole
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -37,16 +41,16 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link text-white"  href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link text-white"  href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

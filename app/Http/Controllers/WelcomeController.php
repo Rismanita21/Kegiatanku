@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    
     public function index()
     {
         $data = [
-            'kegiatans' => Activity::paginate(3),
-            'activitys' => Activity::all(),
+            'kegiatans' => Activity::get(),
+            'activitys' => Activity::latest()->get(),
         ];
 
         return view('index', $data);
