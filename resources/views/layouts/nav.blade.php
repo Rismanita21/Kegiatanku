@@ -13,8 +13,10 @@
                 {{-- <li class="nav-item">
                     <a href="{{url('/')}}" class="nav-link">Welcome Page</a>
                 </li> --}}
+                @auth
                 <li class="nav-item hover">
                     <a href="{{route('dashboard.index')}}" class="nav-link text-white">DASHBOARD</a>
+                 @endauth
                 </li>
                 @role('admin')
                 <li class="nav-item hover">

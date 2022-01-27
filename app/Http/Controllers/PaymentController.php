@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Register;
+use App\Activity;
 use App\Payment;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
@@ -22,11 +23,17 @@ class PaymentController extends Controller
 
         $this->storeImage($verifikasi);
 
-        if($verifikasi->save()){
-            $pembayaran = Register::findOrFail($verifikasi->register_id);
+        if($verifikasi->save()) {
+            $get = Register::findOrFail($verifikasi->register_id);
 
-            $pembayaran->update([
-                'status'    => 'terverifikasi'
+            $activity =  Activity::findOrFail($get->activity_id);
+            
+            $hitung = $activity->jumlah_peserta - $get->qty;
+            $get->update ([
+                'status'   => 'terverifikasi'
+            ]);
+            $activity->update ([
+                'jumlah_peserta' => $hitung
             ]);
 
         }
