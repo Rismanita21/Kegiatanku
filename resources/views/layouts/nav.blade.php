@@ -35,6 +35,9 @@
                 <li class="nav-item hover">
                     <a href="{{route('/')}}" class="nav-link text-white">{{ __('CEK KEGIATAN') }}</a>
                 </li>
+                <li class="nav-item hover">
+                    <a href="{{route('activity')}}" class="nav-link text-white">{{ __('KEGIATANKU') }}</a>
+                </li>
                 @endrole
             </ul>
 

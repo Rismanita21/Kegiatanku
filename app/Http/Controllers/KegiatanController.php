@@ -10,6 +10,7 @@ use App\Mail\PendaftaranMail;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class KegiatanController extends Controller
 {
@@ -39,8 +40,18 @@ class KegiatanController extends Controller
             'qty'         => $request->qty,
         ]);
 
-        $to = Mail::to($user->email)->send(new PendaftaranMail($register));
+         if ($user->save()) {
+        $user = User::findOrFail(Auth::user()->id);
 
+            
+             Nexmo::message()->send([
+              'to' => $user->phone,
+              'from' => 'kegiatanku',
+              'text' => 'hello, kami dari TIM kegiatan ingin memberitahukan kepada anda bahwa anda telah berhasil membeli tiket.'
+
+             . 'Terima Kasih!'
+              ]);
+          }
         return redirect()->back();
     }
 }
